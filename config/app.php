@@ -170,6 +170,7 @@ return [
 
         crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */

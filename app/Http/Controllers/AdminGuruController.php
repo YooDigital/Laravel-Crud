@@ -5,15 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminSiswaController extends \crocodicstudio\crudbooster\controllers\CBController {
-    
-    
-    	
+	class AdminGuruController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "nama_siswa";
+			$this->title_field = "nama_guru";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -26,42 +23,33 @@
 			$this->button_detail = true;
 			$this->button_show = true;
 			$this->button_filter = true;
-			$this->button_import = true;
-			$this->button_export = true;
-			$this->table = "siswa";
+			$this->button_import = false;
+			$this->button_export = false;
+			$this->table = "guru";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Nama Siswa","name"=>"nama_siswa"];
-			$this->col[] = ["label"=>"Tempat Lahir Siswa","name"=>"tempat_lahir_siswa"];
-			$this->col[] = ["label"=>"Tanggal Lahir Siswa","name"=>"tanggal_lahir_siswa"];
-			$this->col[] = ["label"=>"Foto Siswa","name"=>"foto_siswa","image"=>true];
-			$this->col[] = ["label"=>"Orang Tua","name"=>"nama_orangtua","join"=>"orangtua,nama_orangtua"];
-			$this->col[] = ["label"=>"Kelas Siswa","name"=>"kelas_siswa","join"=>"kelas,kelas_siswa"];
-			$this->col[] = ["label"=>"Status","name"=>"status_siswa"];
+			$this->col[] = ["label"=>"Nama Guru","name"=>"nama_guru"];
+			$this->col[] = ["label"=>"Foto Guru","name"=>"foto_guru","image"=>true];
+			$this->col[] = ["label"=>"Jabatan Guru","name"=>"jabatan_guru"];
+			$this->col[] = ["label"=>"Wali Kelas","name"=>"wali_kelas","join"=>"kelas,kelas_siswa"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Nama Siswa','name'=>'nama_siswa','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Tempat Lahir Siswa','name'=>'tempat_lahir_siswa','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Tanggal Lahir Siswa','name'=>'tanggal_lahir_siswa','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Foto Siswa','name'=>'foto_siswa','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Orang Tua Siswa','name'=>'nama_orangtua','type'=>'select2','validation'=>'integer','width'=>'col-sm-10','datatable'=>'orangtua,nama_orangtua'];
-			$this->form[] = ['label'=>'Kelas Siswa','name'=>'kelas_siswa','type'=>'select2','validation'=>'integer','width'=>'col-sm-10','datatable'=>'kelas,kelas_siswa'];
-			$this->form[] = ['label'=>'Status','name'=>'status_siswa','type'=>'radio','dataenum'=>'1|Aktif;2|Tidak Aktif'];
-
+			$this->form[] = ['label'=>'Nama Guru','name'=>'nama_guru','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Foto Guru','name'=>'foto_guru','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Jabatan Guru','name'=>'jabatan_guru','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Wali Kelas','name'=>'wali_kelas','type'=>'select2','validation'=>'integer','width'=>'col-sm-10','datatable'=>'kelas,kelas_siswa'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Nama Siswa","name"=>"nama_siswa","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Tempat Lahir Siswa","name"=>"tempat_lahir_siswa","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Tanggal Lahir Siswa","name"=>"tanggal_lahir_siswa","type"=>"date","required"=>TRUE,"validation"=>"required|date"];
-			//$this->form[] = ["label"=>"Foto Siswa","name"=>"foto_siswa","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Kelas Siswa","name"=>"kelas_siswa","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
-			//$this->form[] = ["label"=>"Status Siswa","name"=>"status_siswa","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Nama Guru","name"=>"nama_guru","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Foto Guru","name"=>"foto_guru","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Jabatan Guru","name"=>"jabatan_guru","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Wali Kelas","name"=>"wali_kelas","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
 			# OLD END FORM
 
 			/* 
@@ -91,13 +79,6 @@
 	        | 
 	        */
 	        $this->addaction = array();
-	  		$this->addaction[] = ['label'=>'Tidak Aktif','icon'=>'fa fa-check','color'=>'danger','showIf'=>"[status_siswa] == 'Tidak Aktif'"];
-			$this->addaction[] = ['label'=>'Aktif','name'=>'status_siswa','type'=>'enum','icon'=>'fa fa-ban','color'=>'success','showIf'=>"[status_siswa] == 'Aktif'"];
-
-			// $this->addaction[] = ['label'=>'Set Paid','icon'=>'fa fa-money','color'=>'warning','url'=>CRUDBooster::mainpath('set-paid').'/[id]','showIf'=>'[status] == "belum lunas"'];
-
-
-
 
 
 	        /* 
@@ -110,9 +91,7 @@
 	        | Then about the action, you should code at actionButtonSelected method 
 	        | 
 	        */
-	        // $this->button_selected = array();
-	        $this->button_selected[] = ['label'=>'Set Active','icon'=>'fa fa-check','name'=>'status_siswa', 'type'=>'enum'];
-
+	        $this->button_selected = array();
 
 	                
 	        /* 
@@ -347,8 +326,6 @@
 
 
 	    //By the way, you can still create your own method in here... :) 
-
-	    
 
 
 	}
