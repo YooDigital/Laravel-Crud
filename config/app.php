@@ -168,6 +168,8 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
 
+        crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
