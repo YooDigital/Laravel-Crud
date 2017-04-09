@@ -8,8 +8,10 @@
         "php": ">=5.6.4",
         "crocodicstudio/crudbooster": "5.3.2.*",
         "deployer/deployer": "^4.3",
+        "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-backup": "^4.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
